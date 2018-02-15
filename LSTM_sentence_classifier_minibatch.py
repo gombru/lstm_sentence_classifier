@@ -56,7 +56,8 @@ def train():
     label_field = data.Field(sequential=False)
     train_iter, dev_iter , test_iter = classification_datasets.load_mr(text_field, label_field, batch_size=BATCH_SIZE)
 
-    text_field.vocab.load_vectors(wv_type='glove.6B', wv_dim=100)
+    text_field.vocab.load_vectors('glove.6B.100d')
+    #text_field.vocab.load_vectors(wv_type='glove.6B', wv_dim=100)
 
     best_dev_acc = 0.0
 
