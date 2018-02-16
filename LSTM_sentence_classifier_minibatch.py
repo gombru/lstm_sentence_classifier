@@ -99,7 +99,8 @@ def evaluate(model, eval_iter, loss_function,  name ='dev'):
         model.hidden = model.init_hidden()  # detaching it from its history on the last instance.
         pred = model(sent)
         pred_label = pred.data.max(1)[1].numpy()
-        pred_res += [x[0] for x in pred_label]
+        # pred_res += [x[0] for x in pred_label]
+        pred_res += [x for x in pred_label]
         loss = loss_function(pred, label)
         avg_loss += loss.data[0]
 
@@ -122,7 +123,8 @@ def train_epoch(model, train_iter, loss_function, optimizer, text_field, label_f
         model.hidden = model.init_hidden()# detaching it from its history on the last instance.
         pred = model(sent)
         pred_label = pred.data.max(1)[1].numpy()
-        pred_res += [x[0] for x in pred_label]
+        # pred_res += [x[0] for x in pred_label]
+        pred_res += [x for x in pred_label]
         model.zero_grad()
         loss = loss_function(pred, label)
         avg_loss += loss.data[0]
